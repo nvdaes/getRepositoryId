@@ -1,10 +1,10 @@
-# Get Repository ID action
+# Get Repository Global Node ID action
 
-This action gets the ID of the specified GitHub repository.
+This action gets the [global node ID](https://docs.github.com/en/graphql/guides/using-global-node-ids) of the specified GitHub repository.
 
 It can be used in other actions, to make calls to the [GitHub GraphQL API](https://docs.github.com/en/graphql/overview/public-schema).
 
-Note that the ID provided by this action won't be the same as `$GITHUB_REPOSITORY_ID`.
+Note that the global node ID of a repository is not the same as its repository ID (i.e., [`GITHUB_REPOSITORY_ID`](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)).
 
 ## Inputs
 
@@ -20,12 +20,12 @@ GitHub token. Defaults `${{ github.token }}`.
 
 ### `repo-id`
 
-The ID of the specified repository.
+The global node ID of the specified repository.
 
 ## Example usage
 
 ```yaml
-- name: Get repo ID
+- name: Get global node ID
   id: get-repo-id
   uses: nvdaes/get-repository-id@v1
   with:
