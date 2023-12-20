@@ -20,21 +20,20 @@ describe('action', () => {
     jest.clearAllMocks()
   })
 
-  it('calls getRepositoryId ', async () => {
+  it('calls getRepositoryId', async () => {
     await main.run()
-	expect(getRepositoryId).toHaveBeenCalled()
+    expect(getRepositoryId).toHaveBeenCalled()
   })
 
-  it('calls setOutput ', async () => {
-	  getRepositoryId.mockResolvedValue('some-id')
+  it('calls setOutput', async () => {
+    getRepositoryId.mockResolvedValue('some-id')
     await main.run()
-	expect(setOutputMock).toHaveBeenCalledWith('repo-id', 'some-id')
+    expect(setOutputMock).toHaveBeenCalledWith('repo-id', 'some-id')
   })
 
-it('calls setFailed ', async () => {
-	  getRepositoryId.mockResolvedValue(undefined)
+  it('calls setFailed', async () => {
+    getRepositoryId.mockResolvedValue(undefined)
     await main.run()
-	expect(setFailedMock).toHaveBeenCalled()
+    expect(setFailedMock).toHaveBeenCalled()
   })
-
 })
