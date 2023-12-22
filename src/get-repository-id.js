@@ -2,7 +2,7 @@
  * Function to get the ID of the specified repo
  */
 const core = require('@actions/core')
-const { graphql } = require("@octokit/graphql");
+const { graphql } = require('@octokit/graphql')
 const { inputHelper } = require('./input-helper')
 
 async function getRepositoryId() {
@@ -13,12 +13,12 @@ async function getRepositoryId() {
       id
     }
   }`
-  
+
   const graphqlWithAuth = graphql.defaults({
-  headers: {
-    authorization: `token `${token}`,
-  },
-});
+    headers: {
+      authorization: `token ${token}`
+    }
+  })
   const result = await graphqlWithAuth(query, variables)
   const repoId = result.repository.id
   return repoId
