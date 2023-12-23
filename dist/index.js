@@ -28913,24 +28913,21 @@ function wrappy (fn, cb) {
  * Function to get the ID of the specified repo
  */
 const core = __nccwpck_require__(2186)
-const { graphql } = __nccwpck_require__(8467)
+const github = __nccwpck_require__(5438)
 const { inputHelper } = __nccwpck_require__(5883)
 
 async function getRepositoryId() {
   const token = core.getInput('token')
+  const octokit = github.getOctokit(token, {
+    userAgent: 'getRepositoryIdVersion1'
+  })
   const variables = inputHelper()
   const query = `query($owner:String!, $name:String!) {
     repository(owner:$owner, name:$name){
       id
     }
   }`
-
-  const graphqlWithAuth = graphql.defaults({
-    headers: {
-      authorization: `token ${token}`
-    }
-  })
-  const result = await graphqlWithAuth(query, variables)
+  const result = await octokit.graphql(query, variables)
   const repoId = result.repository.id
   return repoId
 }
