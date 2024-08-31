@@ -5,7 +5,8 @@ author: 'Noelia Ruiz Martínez'
 # Define your inputs here.
 inputs:
   repository:
-    description: 'Repository name with owner. For example, nvdaes/getRepositoryId'
+    description:
+      'Repository name with owner. For example, nvdaes/getRepositoryId'
     required: true
     default: ${{ github.repository }}
   token:
